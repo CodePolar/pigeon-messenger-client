@@ -1,0 +1,115 @@
+.chat-header {
+    display: flex;
+    width: 100%;
+    padding-left: .5rem;
+    .chat-title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 0 0 calc(80%);
+        color: var(--light-primary);
+        .title-content {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .chat-name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 80%;
+        }
+        .chat-img {
+            img {
+                width: 4rem;
+                height: 4rem;
+                border-radius: 5rem;
+                margin-right: 1rem;
+            }
+        }
+        input {
+            font-size: 1.4rem;
+            margin-top: .5rem;
+            padding: .4rem 0rem;
+            border: none;
+            color: var(--light-marker);
+            border-bottom: .1rem solid var(--pigeon-primary);
+            background-color: transparent;
+            width: 100%;
+        }
+        .members {
+            display: flex;
+            align-items: center;
+            margin-bottom: .4rem;
+            margin-top: .4rem;
+            img {
+                width: 2rem;
+                border-radius: 100%;
+                margin-right: .7rem;
+            }
+
+        }
+    }   
+    .user {
+        .chat-name {
+         
+            input{
+                border-bottom: 1px solid transparent!important;
+            }
+        }
+    }
+    .chat-opts {
+        display: flex;
+        align-items: flex-end;
+        flex: 0 0 calc(20%);
+        justify-content: flex-end;
+        margin-bottom: .5rem;
+        i {
+            color: var(--pigeon-primary);
+            font-size: 1.7rem;
+            margin-right: 1rem;
+            transition: .2s all ease-in;
+        }
+        i:hover {
+            cursor: pointer;
+            color: var(--light-primary);
+        }
+    }
+ 
+}
+.open-bar {
+    position: absolute;
+    color: var(--pigeon-primary);
+    font-size: 1.5rem;
+    margin-top: 6.4rem;
+    z-index: 99;
+    display: flex;
+    background-color: var(--dark-transparent);
+    border-radius: 0rem 6rem 6rem 0rem;
+    padding: 1rem;
+    left: 0;
+}
+
+.contact_header {
+    display: flex;
+    align-items: center;
+    color: var(--light-primary);
+    text-align: left;
+    .contact_text {
+        p {
+            color: var(--dark-gray);
+        }
+    }
+    img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: .5rem;
+        border-radius: 4rem;
+    }
+    @media (min-width: 769px) {
+        img {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+}
