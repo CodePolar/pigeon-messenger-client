@@ -9,6 +9,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import Profile from './Profile';
 import {api} from "../services/config";
 import SideBarControls from './side-bar-controls';
+import { Avatar, AvatarGroup, Box, Flex, Stack, Text } from '@chakra-ui/react';
 
 function Rooms() {
 
@@ -17,7 +18,7 @@ function Rooms() {
     const chatRef = useRef();
     const springOpac = useSpring({to: {opacity: 0}, from: {opacity: 1}, reverse: !showBar.reverse, delay: 400 });
 
-
+    
     return (
         <animated.div style={springOpac}>
             <div className="bar-header">
@@ -39,7 +40,7 @@ function Rooms() {
     )
 }
 
-const ContactIcon = ({ data, peeks, chatRef }) => {
+export const ContactIcon = ({ data, peeks, chatRef }) => {
 
     const { contact_id } = data;
     const { token, user } = useContext(userContext);
@@ -83,9 +84,7 @@ const ContactIcon = ({ data, peeks, chatRef }) => {
             }
             setPeekMessages(data.room_id);
             unreaded(data.room_id);
-            chatRef.current.scrollTop = -999999;
         })
-        chatRef.current.scrollTop = -999999;
 
     }, [])
     return (
@@ -109,7 +108,7 @@ const ContactIcon = ({ data, peeks, chatRef }) => {
     )
 }
 
-const RoomIcon = ({ data, peeks, chatRef }) => {
+export const RoomIcon = ({ data, peeks, chatRef }) => {
     const { token, user } = useContext(userContext);
     const { setSelectedChat, selected, unreaded, setReaded, setPeekMessages, refresh_rooms, showBar, setShowBar} = useContext(roomsContext);
     const {clear_queue} = useContext(messagesContext);
@@ -154,31 +153,46 @@ const RoomIcon = ({ data, peeks, chatRef }) => {
             }
             setPeekMessages(data.room_id);
             unreaded(data.room_id);
-            chatRef.current.scrollTop = -999999;
+            // chatRef.current.scrollTop = -999999;
         })
-        chatRef.current.scrollTop = -999999;
+        // chatRef.current.scrollTop = -999999;
     }, [])
 
 
     return (
-        <div ref={roomRef}  onClick={() => selectedChat(data)} className="chat-icon" style={selected? (data.room_id === selected.room_id? {backgroundColor: "var(--dark-secondary)"} : {}) : ({})}   >
-            <div className="chat-icon-img">
-                {peeks.bells === 0 ? ("") : (
-                    <p className="bells-peek">
-                        {peeks.bells}
-                    </p>
-                )}
-                <img src={`${api}/upload/room/${data.img}?token=${token}`} alt={`${data.name} img`} />
-            </div>
-            <animated.div className="chat-icon-body">
-                <h4>{`${data.name}`}</h4>
-                <div className="peek-messages">
-                    {peeks.messages ? (
-                        <PeekMessage message={peeks.messages[0]} />
-                    ) : ("")}
-                </div>
-            </animated.div>
-        </div>
+        // <div ref={roomRef}  onClick={() => selectedChat(data)} className="chat-icon" style={selected? (data.room_id === selected.room_id? {backgroundColor: "var(--dark-secondary)"} : {}) : ({})}   >
+        //     <div className="chat-icon-img">
+        //         {peeks.bells === 0 ? ("") : (
+        //             <p className="bells-peek">
+        //                 {peeks.bells}
+        //             </p>
+        //         )}
+        //         <img src={`${api}/upload/room/${data.img}?token=${token}`} alt={`${data.name} img`} />
+        //     </div>
+        //     <animated.div className="chat-icon-body">
+        //         <h4>{`${data.name}`}</h4>
+        //         <div className="peek-messages">
+        //             {peeks.messages ? (
+        //                 <PeekMessage message={peeks.messages[0]} />
+        //             ) : ("")}
+        //         </div>
+        //     </animated.div>
+        // </div>
+        <Flex p={3}>
+            <Flex>
+                <Avatar name={data.name} />
+                {/* <AvatarGroup max={"2"}>
+                    <Avatar name='William Shakespare' />
+                    <Avatar name='William Shakespare' />
+                    <Avatar name='William Shakespare' />
+                    <Avatar name='William Shakespare' />
+                    <Avatar name='William Shakespare' />
+                </AvatarGroup> */}
+                <Stack>
+                    <Text ml={3}>{data.name}</Text>
+                </Stack>
+            </Flex>
+        </Flex>
     )
 
 }

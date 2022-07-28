@@ -5,6 +5,7 @@ import { handleClientId } from "../services/sockets/sockets";
 import userContext from '../services/context/UserContext';
 import bellsContext from '../services/context/BellContext';
 import roomsContext from "../services/context/RoomContext";
+import { Text } from '@chakra-ui/react';
 
 import socket from "../services/sockets/socketConfig";
 import ChatView from "../components/ChatView";
@@ -16,6 +17,8 @@ import Alert from '../components/Alert';
 import messagesContext from '../services/context/MessagesContext';
 import { useSpring, animated } from 'react-spring';
 import useWindowSize from '../hooks/useWindowSize';
+import RightMenu from '../components/right-menu';
+import { useRef } from 'react';
 
 
 function Chat() {
@@ -102,13 +105,15 @@ const PrimaryColumn = () => {
     const { showBar } = useContext(roomsContext);
     const [width] = useWindowSize();
     const spring = useSpring({to: {width: "0%"}, from: {width: "100%"}, reverse: !showBar.reverse, delay: 100});
+    const leftMenu = useRef();
 
     return (
     <>
         {width? (
             <>
-            <animated.div style={{...spring}} className="primary-column">
+            <animated.div ref={leftMenu} style={{...spring}} className="primary-column">
                 <Rooms />
+                <RightMenu leftRef={leftMenu} /> 
             </animated.div>
             </>
         ) : (

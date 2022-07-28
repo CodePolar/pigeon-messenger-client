@@ -18,14 +18,18 @@ import ProfileSettingsMenu from "./profile-settings-menu";
 import { BellIcon, Search2Icon } from "@chakra-ui/icons";
 import { css } from "@emotion/react";
 import BadgeButton from "./badge";
+import { useDispatch, useSelector } from "react-redux";
+import { show } from "../features/menuSlice";
 
 function Profile() {
   const { user, token } = useContext(userContext);
   const { setFocus } = useContext(roomsContext);
+  const showVal = useSelector((state) => state.menu.show)
+  const dispatch = useDispatch();
 
   return (
     <>
-      <div className="profile">
+      {/* <div className="profile">
         <div className="profile-opts">
           <img src={`${api}/upload/user/${user.img}?token=${token}`} alt="" />
           <div>
@@ -47,8 +51,8 @@ function Profile() {
         <div className="notifications-panel">
           <Notifications />
         </div>
-      </div>
-      <Box p={5}>
+      </div> */}
+      <Box width={"100%"} p={5}>
         <Flex alignItems={"center"} justifyContent="space-between">
           <Flex>
             <Avatar
@@ -70,7 +74,10 @@ function Profile() {
           </Flex>
           <Box>
            
-          <BadgeButton count={2} />
+          <BadgeButton onClick={() => {
+            console.log('yes');
+              dispatch(show(!showVal))
+          }} count={2} />
           </Box>
         </Flex>
       </Box>
