@@ -5,7 +5,7 @@ import App from './App';
 import { ProvideUser } from './services/context/UserState';
 import {CookiesProvider} from "react-cookie";
 import {Provider} from "react-redux";
-import store from "./services/store"; 
+import {store} from "./store/store"; 
 
 
 ReactDOM.render(

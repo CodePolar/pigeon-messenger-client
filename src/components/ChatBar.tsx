@@ -12,15 +12,15 @@ const ChatBar = () => {
 
     const [message, setMessage] = useState("");
     const [cookies] = useCookies(["token"]);
-    const [doc, setFile] = useState({ docs: [] });
+    const [doc, setFile]: any = useState({ docs: [] });
     const { user, setAlert } = useContext(userContext);
-    const { selected } = useContext(roomsContext);
+    const { selected }: any = useContext(roomsContext);
     const { room_id } = selected ? selected : { room_id: "" };
-    const fileRef = useRef(null);
+    const fileRef: any = useRef(null);
     const [cursor, setCursor] = useState(false);
-    const [photos, setPhotos] = useState([]);
+    const [photos, setPhotos]: any = useState([]);
     
-    const handleSubmit = async ($event) => {
+    const handleSubmit = async ($event: any) => {
         $event.preventDefault();
 
         if (doc.docs.length > 0) {
@@ -74,9 +74,9 @@ const ChatBar = () => {
                 ""
             )}
             <form onSubmit={handleSubmit} className="send-bar">
-                <div onClick={() => fileRef.current.click()} className="fileInput">
+                <div onClick={() => fileRef.current?.click()} className="fileInput">
                     <i className="bi bi-images"></i>
-                    <input ref={fileRef} onChange={($event) => {
+                    <input ref={fileRef} onChange={($event: any) => {
                         setFile({ docs: [...doc.docs, ...$event.currentTarget.files] })
                         setPhotos([...$event.currentTarget.files].map(e => {
                             return URL.createObjectURL(e);
@@ -92,7 +92,7 @@ const ChatBar = () => {
     )
 }
 
-const Uploads = ({ files }) => {
+const Uploads = ({ files }: any) => {
 
     const [photos, setPhotos] = useState([]);
     const spring = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 200 });

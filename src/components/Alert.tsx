@@ -27,7 +27,7 @@ function Alert() {
     )
 }
 
-const AlertComponent = ({data, alertID}) => {
+const AlertComponent = ({data, alertID}: any) => {
 
     const {deleteAlert} = useContext(userContext);
     const [show, setShow] = useState(true);
@@ -49,7 +49,7 @@ const AlertComponent = ({data, alertID}) => {
     return (
         <>
             {show ? (
-                <animated.div style={spring} className={`${alert.type === "info" ? "info" : ""} pigeon-alert`}>
+                <animated.div style={spring} className={`${data.type === "info" ? "info" : ""} pigeon-alert`}>
                     {data.resalt ? (
                         <p>{`${data.text.split("/")[0]}`} <span>{`${data.resalt}`}</span>  {`${data.text.split("/")[1]}`}</p>
                     ) : (

@@ -22,7 +22,7 @@ import Profile from "../components/Profile";
 import RightMenu from "../components/right-menu";
 import RoomList from "../components/room-list";
 import SearchInput from "../components/search-input";
-import { show } from "../features/menuSlice";
+import { show } from "../store/features/menuSlice";
 
 function Playground() {
   const leftRef = useRef();

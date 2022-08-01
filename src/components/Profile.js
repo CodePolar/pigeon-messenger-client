@@ -19,7 +19,8 @@ import { BellIcon, Search2Icon } from "@chakra-ui/icons";
 import { css } from "@emotion/react";
 import BadgeButton from "./badge";
 import { useDispatch, useSelector } from "react-redux";
-import { show } from "../features/menuSlice";
+import { show } from "../store/features/menuSlice";
+import NotificationsBox from "./notifications-box";
 
 function Profile() {
   const { user, token } = useContext(userContext);
@@ -29,7 +30,7 @@ function Profile() {
 
   return (
     <>
-      {/* <div className="profile">
+      <div className="profile">
         <div className="profile-opts">
           <img src={`${api}/upload/user/${user.img}?token=${token}`} alt="" />
           <div>
@@ -49,9 +50,9 @@ function Profile() {
         </div>
 
         <div className="notifications-panel">
-          <Notifications />
+          <NotificationsBox />
         </div>
-      </div> */}
+      </div>
       <Box width={"100%"} p={5}>
         <Flex alignItems={"center"} justifyContent="space-between">
           <Flex>

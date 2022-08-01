@@ -1,6 +1,6 @@
-import openSocket from "socket.io-client"
+import {io} from "socket.io-client"
 import {api} from "../config";
 
-const socket = openSocket(api);
+const socket = io(api);
 
 export default socket;

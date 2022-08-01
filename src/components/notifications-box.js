@@ -11,7 +11,7 @@ import * as Vibrant from "node-vibrant/dist/vibrant";
 import useWindowSize from '../hooks/useWindowSize';
 
 
-function Notifications() {
+function NotificationsBox() {
 
     const { bells, setBells } = useContext(bellsContext);
     const { setBell, bellState } = useContext(roomsContext);
@@ -154,4 +154,4 @@ function BellComponent({ data, request, opts }) {
     )
 }
 
-export default Notifications
+export default NotificationsBox

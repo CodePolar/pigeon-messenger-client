@@ -2,7 +2,7 @@ import { Box, IconButton } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { FaBell } from 'react-icons/fa';
 
-function BadgeButton ({ count, onClick }) {
+function BadgeButton ({ count, onClick }: any) {
     return (
         <IconButton
             onClick={onClick}

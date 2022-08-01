@@ -72,7 +72,7 @@ function Login() {
                 <Alert />
             ) : ("")}
             <div className="principal-page-view">
-                <div className="landing">
+                {/* <div className="landing">
                     <div className="landing-title">
                         <animated.h1 style={title}>Pigeon <span>Messenger</span></animated.h1>
                         <h3>Real-time messaging in a lightweight way</h3>
@@ -85,7 +85,7 @@ function Login() {
                         <img src="/desktops.gif" alt="desktop gif" />
                         </animated.div>
                     </div>
-                </div>
+                </div> */}
                 <div className="form-div">
 
                     <ChatIcons />   

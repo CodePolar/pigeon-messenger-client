@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
+import socket from "../services/sockets/socketConfig";
+
 import bellsContext from "../services/context/BellContext";
 import userContext from "../services/context/UserContext";
 import { useSpring, animated } from "react-spring";
@@ -9,6 +11,7 @@ import {
   declined_room,
   acceptRoom,
   roomSettings,
+  handleClientId,
 } from "../services/sockets/sockets";
 import roomsContext from "../services/context/RoomContext";
 import { api } from "../services/config";
@@ -32,7 +35,9 @@ import { BiCheck, BiGroup, BiMenuAltRight, BiX } from "react-icons/bi";
 
 function Notifications({ menu, show }) {
   const { bells, setBells } = useContext(bellsContext);
+  const {token} = useContext(userContext);
   const { setBell, bellState } = useContext(roomsContext);
+  const [isConnected, setIsConnected] = useState(socket.connected);
   const [width] = useWindowSize();
 
   const spring = useSpring({
@@ -50,6 +55,13 @@ function Notifications({ menu, show }) {
     from: { padding: "0rem 0rem", opacity: 0 },
     reverse: !show,
   });
+
+  useEffect(() => {
+    handleClientId(token);
+    socket.on("notify", (args) => {
+        console.log(args);
+    });
+  }, []);
 
   useEffect(() => {
     if (show) {
@@ -290,7 +302,10 @@ const RegularNotification = () => {
   return (
     <Box w="100%" p={2} bg="blackAlpha.100" borderRadius={10} mb={5}>
       <Flex w="100%">
-        <Avatar name="Dan Abrahmov" src="https://www.nationalgeographic.com.es/medio/2019/05/30/alan-turing_51cdd2da.jpg" />
+        <Avatar
+          name="Dan Abrahmov"
+          src="https://www.nationalgeographic.com.es/medio/2019/05/30/alan-turing_51cdd2da.jpg"
+        />
         <Stack ml={3} alignItems={"flex-start"} width="100%">
           <Flex
             alignItems={"center"}
@@ -301,8 +316,19 @@ const RegularNotification = () => {
               Alan Turing
             </Text>
             <Flex>
-              <IconButton size={"sm"} variant="ghost" colorScheme="blue" as={BiCheck} />
-              <IconButton size={"sm"} variant="ghost" colorScheme="red" as={BiX} ml={2} />
+              <IconButton
+                size={"sm"}
+                variant="ghost"
+                colorScheme="blue"
+                as={BiCheck}
+              />
+              <IconButton
+                size={"sm"}
+                variant="ghost"
+                colorScheme="red"
+                as={BiX}
+                ml={2}
+              />
             </Flex>
           </Flex>
           <Text mt="0px!important" fontSize="sm">
@@ -318,20 +344,25 @@ const InteractNotification = () => {
   return (
     <Box w="100%" p={2} bg="blackAlpha.100" borderRadius={10} mb={5}>
       <Flex flexDirection={"column"} w="100%">
-    <Flex w="100%" justifyContent={"space-between"}>
-
-      <AvatarGroup size="md" max={2}>
-              <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
-              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
-              <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-              <Avatar
-                name="Prosper Otemuyiwa"
-                src="https://bit.ly/prosper-baba"
-              />
-              <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
-            </AvatarGroup>
-            <IconButton size="sm" colorScheme={"gray"} variant="ghost" color="blue.500" as={BiGroup} />
-    </Flex>
+        <Flex w="100%" justifyContent={"space-between"}>
+          <AvatarGroup size="md" max={2}>
+            <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
+            <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+            <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+            <Avatar
+              name="Prosper Otemuyiwa"
+              src="https://bit.ly/prosper-baba"
+            />
+            <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
+          </AvatarGroup>
+          <IconButton
+            size="sm"
+            colorScheme={"gray"}
+            variant="ghost"
+            color="blue.500"
+            as={BiGroup}
+          />
+        </Flex>
         <Stack mt={3} alignItems={"flex-start"} width="100%">
           <Stack w="100%">
             <Flex
@@ -340,11 +371,10 @@ const InteractNotification = () => {
               width={"100%"}
             >
               <Text fontWeight="bold" borderRadius={100}>
-                Science and Engineering School 
+                Science and Engineering School
               </Text>
               {/* <IconButton size={"sm"} as={BiMenuAltRight} /> */}
             </Flex>
-            
           </Stack>
           <Text mt="0px!important" fontSize="sm">
             Request you to join Room

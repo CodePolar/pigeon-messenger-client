@@ -71,23 +71,10 @@ function Register() {
                 <Alert />
             ) : ("")}
             <div className="principal-page-view">
-                <div className="landing">
-                    <div className="landing-title">
-                        <animated.h1 style={title}>Pigeon <span>Messenger</span></animated.h1>
-                        <h3>Real-time messaging in a lightweight way</h3>
-                    </div>
-                    <div  className="landing-body">
-                        <animated.div style={displays1} className="mobile">
-                            <img src="/mobiles.gif" alt="mobile gif" />
-                        </animated.div>
-                        <animated.div style={displays2} className="desktop">
-                        <img src="/desktops.gif" alt="desktop gif" />
-                        </animated.div>
-                    </div>
-                </div>
+                
                 <div className="form-div">
 
-                    <ChatIcons />
+                    {/* <ChatIcons /> */}
 
                     <form onSubmit={formik.handleSubmit} className="form">
                         <h2>Join</h2>
@@ -116,6 +103,20 @@ function Register() {
                         <p className="form-redirect">Already on site? <Link to="/login">login</Link> </p>
                     </form>
                 </div>
+                {/* <div className="landing">
+                    <div className="landing-title">
+                        <animated.h1 style={title}>Pigeon <span>Messenger</span></animated.h1>
+                        <h3>Real-time messaging in a lightweight way</h3>
+                    </div>
+                    <div  className="landing-body">
+                        <animated.div style={displays1} className="mobile">
+                            <img src="/mobiles.gif" alt="mobile gif" />
+                        </animated.div>
+                        <animated.div style={displays2} className="desktop">
+                        <img src="/desktops.gif" alt="desktop gif" />
+                        </animated.div>
+                    </div>
+                </div> */}
             </div>
             {loading === "Loading" ? (
                 <Loading />
